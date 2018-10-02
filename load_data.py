@@ -3,7 +3,7 @@ import pydicom
 from torch.utils.data import Dataset
 from PIL import Image
 import os
-
+import torch
 
 class ChestXrayDataSet(Dataset):
 
