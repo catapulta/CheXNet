@@ -15,6 +15,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from read_data import ChestXrayDataSet
 from sklearn.metrics import roc_auc_score
+import shutil
 
 
 CKPT_PATH = './pretrained/model.pth.tar'
