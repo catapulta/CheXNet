@@ -26,7 +26,26 @@ TEST_IMAGE_LIST = './ChestX-ray14/labels/test_list.txt'
 BATCH_SIZE = 16
 
 
-# TODO: train model
+# TODO: train model https://github.com/ZexinYan/CheXNet
+
+
+def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
+    """
+
+    :param state: state should contain at least:
+            {
+            'epoch': epoch,
+            'state_dict': model.state_dict(),
+            'optimizer' : optimizer.state_dict(),
+            }
+    :param is_best: is this model the best one to date?
+    :param filename: path to save file
+    :return: None
+    """
+    torch.save(state, filename)
+    if is_best:
+        shutil.copyfile(filename, 'model_best.pth.tar')
+
 
 def test_model():
 

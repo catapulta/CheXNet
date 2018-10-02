@@ -14,7 +14,6 @@ class ChestXrayDataSet(Dataset):
             image_list_file=None,
             transform=None):
         """
-        Utility for loading x-ray images in either dcm (DICOM) or png formats.
         :param path_to_images: Path to image directory
         :param transform: Transformation to apply to the image before returning
         :param sample: Nothing if None. If integer, select random sample of size sample.
@@ -39,7 +38,7 @@ class ChestXrayDataSet(Dataset):
         self.png_or_dcm = png_or_dcm
 
     def __len__(self):
-        return len(self.df)
+        return len(self.labels)
 
     def __getitem__(self, idx):
         image_name = self.image_names[idx]
