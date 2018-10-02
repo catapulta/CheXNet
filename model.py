@@ -17,16 +17,18 @@ from read_data import ChestXrayDataSet
 from sklearn.metrics import roc_auc_score
 
 
-CKPT_PATH = 'model.pth.tar'
+CKPT_PATH = './pretrained/model.pth.tar'
 N_CLASSES = 14
 CLASS_NAMES = [ 'Atelectasis', 'Cardiomegaly', 'Effusion', 'Infiltration', 'Mass', 'Nodule', 'Pneumonia',
                 'Pneumothorax', 'Consolidation', 'Edema', 'Emphysema', 'Fibrosis', 'Pleural_Thickening', 'Hernia']
 DATA_DIR = './ChestX-ray14/images'
 TEST_IMAGE_LIST = './ChestX-ray14/labels/test_list.txt'
-BATCH_SIZE = 64
+BATCH_SIZE = 16
 
 
-def main():
+# TODO: train model
+
+def test_model():
 
     cudnn.benchmark = True
 
@@ -55,6 +57,7 @@ def main():
                                         transforms.Lambda
                                         (lambda crops: torch.stack([normalize(crop) for crop in crops]))
                                     ]))
+
     test_loader = DataLoader(dataset=test_dataset, batch_size=BATCH_SIZE,
                              shuffle=False, num_workers=8, pin_memory=True)
 
@@ -126,4 +129,4 @@ class DenseNet121(nn.Module):
 
 
 if __name__ == '__main__':
-    main()
+    test_model()
